@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthConroller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::controller(AuthConroller::class)->group(function () {
+    Route::get('/test', 'test');
+    Route::get('/register', 'register');
+    Route::get('/submitCode', 'submitCode');
+    Route::post('/submitRegister', 'submitRegister')->middleware('auth:sanctum');;
+    Route::post('/getMe', 'getMe')->middleware('auth:sanctum');
 });
