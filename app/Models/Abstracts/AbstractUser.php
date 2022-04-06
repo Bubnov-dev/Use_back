@@ -12,6 +12,13 @@ class AbstractUser extends Authenticatable
 {
     use HasApiTokens;
 
+    /**
+     * default find user by email/phone
+     *
+     * @param $phone
+     * @param null $email
+     * @return mixed
+     */
     public function findUser($phone, $email = null)
     {
         if ($phone) {
@@ -21,21 +28,35 @@ class AbstractUser extends Authenticatable
         }
     }
 
+    /**
+     * get code of User with findUser
+     *
+     * @param $phone
+     * @param null $email
+     * @return mixed
+     */
     public function getCode($phone, $email = null)
     {
         $user = self::findUser($phone, $email);
         return $user->select('code')->first()->code;
     }
 
+    /**
+     * checks code and return token
+     *
+     * @param $phone
+     * @param $email
+     * @param string $code
+     * @return array|false[]
+     */
     public static function loginBySubmitCode($phone, $email, string $code)
     {
         $user = self::findUser($phone, $email)->first();
         $real_code = self::getCode($phone, $email);
-        Log::info('code: '.$code);
 
-        Log::info('code: '.$real_code);
         if ($code === $real_code) {
-            $user->code = "";
+            $user->code = ""; //todo check, save
+            $user->save();
             return [
                 'login' => true,
                 'token' => $user->createToken('myapptoken')->plainTextToken

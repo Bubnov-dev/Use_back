@@ -20,9 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::controller(AuthConroller::class)->group(function () {
-    Route::get('/test', 'test');
-    Route::get('/register', 'register');
-    Route::get('/submitCode', 'submitCode');
+    Route::post('/test', 'test');
+    Route::post('/registerLogin', 'registerLogin');
+    Route::post('/submitCode', 'submitCode');
     Route::post('/submitRegister', 'submitRegister')->middleware('auth:sanctum');;
     Route::post('/getMe', 'getMe')->middleware('auth:sanctum');
 });
