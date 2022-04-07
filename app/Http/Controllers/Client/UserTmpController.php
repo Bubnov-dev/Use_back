@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
-use App\Models\User_tmp;
+use App\Http\Controllers\Controller;
+use App\Models\Client\User_tmp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -26,19 +27,11 @@ class UserTmpController extends Controller
      */
     public function create(array $fields)
     {
-//        if (!count(User_tmp::where('phone', $phone)->get())){
-            return User_tmp::create([
-                'phone' => ($fields['phone'] ?? ''),
-                'code' => ($fields['code'] ?? ''),
-                'email' => ($fields['email'] ?? ''),
-            ])->save();
-//        }
-//        else{
-//            return User_tmp::where('phone', $phone)->update([
-//                'code' => $code,
-//            ]);
-//        }
-
+        return User_tmp::create([
+            'phone' => ($fields['phone'] ?? ''),
+            'code' => ($fields['code'] ?? ''),
+            'email' => ($fields['email'] ?? ''),
+        ])->save();
     }
 
     /**
@@ -66,7 +59,7 @@ class UserTmpController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User_tmp  $user_tmp
+     * @param  \App\Models\Client\User_tmp  $user_tmp
      * @return \Illuminate\Http\Response
      */
     public function edit(User_tmp $user_tmp)
@@ -102,15 +95,6 @@ class UserTmpController extends Controller
             'code' => $code,
         ])  ;
     }
-
-//    public function getCode($phone, $email){
-//        if ($phone){
-//            return User_tmp::where('phone', $phone)->select('code')->first()->code;
-//        }
-//        else {
-//            return User_tmp::where('email', $email)->select('code')->first()->code;
-//        }
-//    }
 
     /**
      * Remove the specified resource from storage.

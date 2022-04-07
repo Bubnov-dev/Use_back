@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AuthConroller;
+use App\Http\Controllers\Client\AuthClientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::controller(AuthConroller::class)->group(function () {
-    Route::post('/test', 'test');
+Route::controller(AuthClientController::class)->group(function () {
+
+    header('Access-Control-Allow-Origin: *');
+    header('Content-type: application/json');
+
     Route::post('/registerLogin', 'registerLogin');
     Route::post('/submitCode', 'submitCode');
     Route::post('/submitRegister', 'submitRegister')->middleware('auth:sanctum');;

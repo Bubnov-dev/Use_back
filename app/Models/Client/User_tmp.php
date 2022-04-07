@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Client;
 
-use App\Models\Abstracts\AbstractUser;
+use App\Models\Client\Abstracts\AbstractUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

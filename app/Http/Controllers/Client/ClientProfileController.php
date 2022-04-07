@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
-use App\Models\Client_profile;
+use App\Http\Controllers\Controller;
+use App\Models\Client\Client_profile;
 use Illuminate\Http\Request;
 
 class ClientProfileController extends Controller
@@ -41,7 +42,7 @@ class ClientProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Client_profile  $client_profile
+     * @param Client_profile $client_profile
      * @return \Illuminate\Http\Response
      */
     public function show(Client_profile $client_profile)
@@ -52,7 +53,7 @@ class ClientProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Client_profile  $client_profile
+     * @param  \App\Models\Client\Client_profile  $client_profile
      * @return \Illuminate\Http\Response
      */
     public function edit(Client_profile $client_profile)
@@ -64,7 +65,7 @@ class ClientProfileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Client_profile  $client_profile
+     * @param  \App\Models\Client\Client_profile  $client_profile
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Client_profile $client_profile)
@@ -75,7 +76,7 @@ class ClientProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Client_profile  $client_profile
+     * @param  \App\Models\Client\Client_profile  $client_profile
      * @return \Illuminate\Http\Response
      */
     public function destroy(Client_profile $client_profile)

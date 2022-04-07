@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Abstracts;
+namespace App\Models\Client\Abstracts;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,7 +13,11 @@ class AbstractUser extends Authenticatable
     use HasApiTokens;
 
     /**
-     * default find user by email/phone
+     * default find user by email/phone or returns json
+     *
+     * Here i use die() and give response to for request. I suppose it should not be in a model,
+     * but this function is used in many places, and next code shouldn't be executed, if user doesn't exist
+     *
      *
      * @param $phone
      * @param null $email
@@ -22,10 +26,21 @@ class AbstractUser extends Authenticatable
     public function findUser($phone, $email = null)
     {
         if ($phone) {
-            return self::where('phone', $phone);
+            $user = self::where('phone', $phone);
         } else {
-            return self::where('email', $email);
+            $user = self::where('email', $email);
         }
+
+        if($user->count()==0){
+            die(json_encode([
+                'result' => false,
+                'message' => 'no such user'
+            ]));
+        }
+        else{
+            return $user;
+        }
+
     }
 
     /**
@@ -55,15 +70,15 @@ class AbstractUser extends Authenticatable
         $real_code = self::getCode($phone, $email);
 
         if ($code === $real_code) {
-            $user->code = ""; //todo check, save
+            $user->code = null; //todo check, save
             $user->save();
             return [
-                'login' => true,
+                'result' => true,
                 'token' => $user->createToken('myapptoken')->plainTextToken
             ];
         } else {
             return [
-                'login' => false
+                'result' => false
             ];
         }
     }

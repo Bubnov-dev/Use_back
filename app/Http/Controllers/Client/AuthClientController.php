@@ -1,24 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
+use App\Http\Controllers\APIMailController;
+use App\Http\Controllers\APISMSController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterLoginRequest;
 use App\Http\Requests\RegisterSubmitRequest;
 use App\Http\Requests\submitCodeRequest;
 use App\Mail\CodeMail;
-use App\Models\User;
-use App\Models\User_tmp;
+use App\Models\Client\{User, User_tmp};
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-class AuthConroller extends Controller
+class AuthClientController extends Controller
 {
 
-    public function test(RegisterSubmitRequest $request)
-    {
-        return $request;
-    }
 
     /**
      * @param int $digits
@@ -101,24 +99,25 @@ class AuthConroller extends Controller
 
     /**
      * get phone/email, code and give new token to User/new User_tmp
-
      *
      * @param Request $request
      * @param string $type
      * @return \Illuminate\Http\JsonResponse
      */
     public static function submitCode(SubmitCodeRequest $request)
+
     {
         $code = $request->input('code');
         $phone = $request->input('phone');
         $email = $request->input('email');
         //todo if give phone && email return error
-        if (User::where('phone', $phone)->orWhere('email', $email)->count() == 0) {
+//        if (User::where('phone', $phone)->orWhere('email', $email)->count() == 0) {
+        if (!User::findUser($phone, $email)) {
             $result = User_tmp::loginBySubmitCode($phone, $email, $code);
         } else {
             $result = User::loginBySubmitCode($phone, $email, $code);
         }
-        return response()->json($result);
+            return response()->json($result);
     }
 
 
@@ -144,6 +143,10 @@ class AuthConroller extends Controller
                 return response()
                     ->json(['result' => true, 'token' => $user->createToken('myapptoken')->plainTextToken]);
             }
+        }
+        else{
+            return response()
+                ->json(['result' => false, 'message' => 'you are registered already']);
         }
 
 
