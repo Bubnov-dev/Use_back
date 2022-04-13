@@ -19,7 +19,7 @@ class CreateCompaniesTable extends Migration
             $table->string('logo');
             $table->text('description');
             $table->foreignIdFor(\App\Models\Business\CompanyCategory::class);
-            $table->foreignIdFor(\App\Models\Business\BusinessUser::class);
+            $table->foreignIdFor(\App\Models\BusinessUser::class);
             $table->timestamps();
         });
     }
