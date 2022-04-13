@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Business;
 
-use App\Models\Business\CompanyCategory;
+use App\Http\Controllers\Controller;
+use App\Models\Business\BusinessUserEmployee;
 use Illuminate\Http\Request;
 
-class CompanyCategoryController extends Controller
+class BusinessUserEmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class CompanyCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param CompanyCategory $companyCategory
+     * @param  \App\Models\Business\BusinessUserEmployee  $businessUserEmployee
      * @return \Illuminate\Http\Response
      */
-    public function show(CompanyCategory $companyCategory)
+    public function show(BusinessUserEmployee $businessUserEmployee)
     {
         //
     }
@@ -52,10 +53,10 @@ class CompanyCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param CompanyCategory $companyCategory
+     * @param BusinessUserEmployee $businessUserEmployee
      * @return \Illuminate\Http\Response
      */
-    public function edit(CompanyCategory $companyCategory)
+    public function edit(BusinessUserEmployee $businessUserEmployee)
     {
         //
     }
@@ -64,10 +65,10 @@ class CompanyCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param CompanyCategory $companyCategory
+     * @param BusinessUserEmployee $businessUserEmployee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CompanyCategory $companyCategory)
+    public function update(Request $request, BusinessUserEmployee $businessUserEmployee)
     {
         //
     }
@@ -75,10 +76,10 @@ class CompanyCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param CompanyCategory $companyCategory
+     * @param BusinessUserEmployee $businessUserEmployee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CompanyCategory $companyCategory)
+    public function destroy(BusinessUserEmployee $businessUserEmployee)
     {
         //
     }

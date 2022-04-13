@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Business;
 
-use App\Models\Business\Representative;
+use App\Http\Controllers\Controller;
+use App\Models\Business\Company;
 use Illuminate\Http\Request;
 
-class RepresentativeController extends Controller
+class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class RepresentativeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Representative $representative
+     * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function show(Representative $representative)
+    public function show(Company $company)
     {
         //
     }
@@ -52,10 +53,10 @@ class RepresentativeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Representative $representative
+     * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function edit(Representative $representative)
+    public function edit(Company $company)
     {
         //
     }
@@ -64,10 +65,10 @@ class RepresentativeController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param Representative $representative
+     * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Representative $representative)
+    public function update(Request $request, Company $company)
     {
         //
     }
@@ -75,10 +76,10 @@ class RepresentativeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Representative $representative
+     * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Representative $representative)
+    public function destroy(Company $company)
     {
         //
     }

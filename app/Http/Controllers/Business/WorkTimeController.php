@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Business;
 
+use App\Http\Controllers\Controller;
 use App\Models\Business\WorkTime;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
