@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Models\Client;
+namespace App\Models\Business;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Client_profile extends Model
+class Representative extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
 }
