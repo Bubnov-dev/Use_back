@@ -15,7 +15,7 @@ class CompanyCategoryController extends Controller
      */
     public function index()
     {
-        //
+        return CompanyCategory::all();
     }
 
     /**
